@@ -13,15 +13,15 @@ private:
 
 public:
     Lanchonete();
-    void realizarPedido(Pedido*ponteiro);
-    void removerPedido(int);
-    void setNomeLanchonete();
-    std::string getNome();
-    void setEndereco();
-    void imprimeEndereco();
-    double getLucro();
-    void setNumero();
-    int getNumero();
+    void realizarPedido(Pedido*ponteiro); //
+    void removerPedido(int);              //
+    void setNomeLanchonete();             //
+    std::string getNome();                //
+    void setEndereco();                   //
+    void imprimeEndereco();               //
+    double getLucro();                    //
+    void setNumero();                     //
+    int getNumero();                      //
     ~Lanchonete();
 };
 
