@@ -4,14 +4,14 @@
 #include <string>
 #include "Produto.h"
 
-class ProdutoPorUnidade : public Produto 
+class ProdutoPorUnidade : public Produto
 {
 private:
-    string quantidade;
+    int quantidade;
 
 public:
-    ProdutoPorUnidade(string, string, string, string);
-    string getQuantidade();
+    ProdutoPorUnidade(int = 0, string = "", int = 0, float = 0.0);
+    int getQuantidade();
 
     //lembrar de verificar sua utilidade
     void setQuantidade(int quantidade);

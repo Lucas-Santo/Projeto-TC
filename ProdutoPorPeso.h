@@ -1,17 +1,17 @@
 #ifndef PRODUTOPORPESO_H
 #define PRODUTOPORPESO_H
 
-class ProdutoPorPeso : public Produto 
+class ProdutoPorPeso : public Produto
 {
 private:
-    string peso;
+    float peso;
 
 public:
-    ProdutoPorPeso(string, string, string, string);
-    string getPeso();
+    ProdutoPorPeso(float = 0.0, string = "", int = 0, float = 0.0);
+    float getPeso();
 
     //lembrar de verificar sua utilidade
-    void setPeso(double peso);
+    void setPeso(float peso);
     ~ProdutoPorPeso();
 };
 

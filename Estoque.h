@@ -15,6 +15,8 @@ public:
     void removerProdutoPeso();
     ProdutoPorPeso getpeso(int);
     ProdutoPorUnidade getunidade(int);
+    void setValorPeso(int, float); //*
+    void setValorUnidade(int, int); //*
     void imprimirEstoque(int = 0, bool = true);
     void recuperarDadosDoProduto(int, int, bool);
     int getSize(int);

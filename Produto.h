@@ -1,25 +1,25 @@
 #ifndef PRODUTO_H
 #define PRODUTO_H
-class Produto 
+class Produto
 {
 protected:
     string nome;
-    string codigo;
-    string preco;
+    int codigo; //*
+    float preco;
 
     //lembrar de verificar sua utilidade
     string regraManipulacao;
     string regraTransporte;
 public:
-    Produto(string, string, string);
+    Produto(string = "", int = 0, float = 0.0);
     string getNome();
-    string getCodigo();
-    string getPreco();
+    int getCodigo(); //*
+    float getPreco();
 
     //lembrar de verificar sua utilidade
     void setNome(string);
-    void setCodigo(int codigo);
-    void setPreco(float preco);
+    void setCodigo(int);
+    void setPreco(float);
     void setRegraManipulacao(string regra);
     void setRegraTransporte(string regra);
     string getRegraManipulacao();

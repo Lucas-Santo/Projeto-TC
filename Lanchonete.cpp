@@ -3,14 +3,14 @@
 Lanchonete::Lanchonete() {
 }
 
-void Lanchonete::realizarPedido(Pedido*ponteiro) {
-    this -> historicoPedidos.push_back(&ponteiro);
+void Lanchonete::realizarPedido(Pedido ponteiro) {
+    this->historicoPedidos.push_back(ponteiro);
 }
 
 void Lanchonete::removerPedido(int entrada) {
-     vector<Pedido>::iterator it;
+    vector<Pedido>::iterator it;
     it = historicoPedidos.begin() + entrada - 1;
-    historicoPedidos.erase(it)
+    historicoPedidos.erase(it);
 }
 
 void Lanchonete::setNomeLanchonete(string nome) {
@@ -45,6 +45,13 @@ void Lanchonete::setTelefone(int telefone) {
 
 int Lanchonete::getTelefone() {
     return telefone;
+}
+
+Estoque* Lanchonete::getEstoque() {
+    return &estoque;
+}
+int Lanchonete::getHistSize(){
+    return historicoPedidos.size();
 }
 
 Lanchonete::~Lanchonete() {
