@@ -6,12 +6,17 @@ Estoque::Estoque() //abre o arquivo EstoqueProdutoUnidade e EstoqueProdutoPeso
     if (arquivoUnidade.is_open())
     {
         string quantidade, nome, codigo, preco;
+        int cdg, qtd;
+        float prc;
         while (getline(arquivoUnidade, quantidade))
         {
             getline(arquivoUnidade, nome);
             getline(arquivoUnidade, codigo);
             getline(arquivoUnidade, preco);
-            ProdutoPorUnidade produtoUnidade(quantidade, nome, codigo, preco);
+            prc = stof(preco);      //connverte string to float
+            cdg = stoi(codigo);     //connverte string to int
+            qtd = stoi(quantidade); //connverte string to float
+            ProdutoPorUnidade produtoUnidade(qtd, nome, cdg, prc);
             produtosUnidade.push_back(produtoUnidade);
         }
         arquivoUnidade.close();
@@ -22,12 +27,17 @@ Estoque::Estoque() //abre o arquivo EstoqueProdutoUnidade e EstoqueProdutoPeso
     if (arquivoPeso.is_open())
     {
         string peso, nome, codigo, preco;
+        int cdg;
+        float prc, pso;
         while (getline(arquivoPeso, peso))
         {
             getline(arquivoPeso, nome);
             getline(arquivoPeso, codigo);
             getline(arquivoPeso, preco);
-            ProdutoPorPeso produtoPeso(peso, nome, codigo, preco);
+            pso = stof(peso);   //connverte string to float
+            prc = stof(preco);  //connverte string to float
+            cdg = stoi(codigo); //connverte string to int
+            ProdutoPorPeso produtoPeso(pso, nome, cdg, prc);
             produtosPeso.push_back(produtoPeso);
         }
         arquivoPeso.close();
@@ -147,23 +157,23 @@ void Estoque::removerProdutoPeso() {
 }
 
 
-void Estoque::imprimirEstoque(int estoque, bool all) {
+void Estoque::imprimirEstoque(int estoque, bool all) {//*
     if (estoque == 1 || all) {
         cout << "Produtos por unidade: " << endl;
         for (int i = 0; i < produtosUnidade.size(); i++) {
-            cout << produtosUnidade[i].getNome() << " | Quantidade: " << produtosUnidade[i].getQuantidade() << endl;
+            cout << "Codigo: "<<produtosUnidade[i].getCodigo() << " | Nome " << produtosUnidade[i].getNome() << " | Quantidade: " << produtosUnidade[i].getQuantidade() << endl;
         };
     };
     if (all) { cout << "------------------------" << endl; };
     if (estoque == 2 || all) {
         cout << "Produtos por peso: " << endl;
         for (int i = 0; i < produtosPeso.size(); i++) {
-            cout << produtosPeso[i].getNome() << " | Quantidade: " << produtosPeso[i].getPeso() << endl;
+            cout << "Codigo: "<<produtosUnidade[i].getCodigo()<< " | Nome " << produtosPeso[i].getNome() << " | Quantidade: " << produtosPeso[i].getPeso() << endl;
         };
     };
 }
 
-void Estoque::recuperarDadosDoProduto(int estoque, int produto, bool all) {
+void Estoque::recuperarDadosDoProduto(int estoque, int produto, bool all) {//*
     bool imprimirPorUnidade = (estoque == 1) || (all && estoque != 2);
     bool imprimirPorPeso = (estoque == 2) || all;
 
@@ -172,17 +182,17 @@ void Estoque::recuperarDadosDoProduto(int estoque, int produto, bool all) {
         for (int i = 0; i < produtosUnidade.size(); i++) {
             if (produto == i) {
                 cout << produtosUnidade[i].getNome() << " | Quantidade: " << produtosUnidade[i].getQuantidade() << endl;
-            }
-        }
+            };
+        };
     }
     else if (imprimirPorPeso && produtosPeso.size() > 0) {
         cout << "Produtos por peso: " << endl;
         for (int i = 0; i < produtosPeso.size(); i++) {
             if (produto == i) {
                 cout << produtosPeso[i].getNome() << " | Quantidade: " << produtosPeso[i].getPeso() << endl;
-            }
-        }
-    }
+            };
+        };
+    };
 }
 
 int Estoque::getSize(int estoque) {
@@ -193,10 +203,37 @@ int Estoque::getSize(int estoque) {
         return produtosPeso.size();
     };
 }
-ProdutoPorPeso Estoque::getpeso(int entrada) {
-    return produtosPeso[entrada];
+ProdutoPorPeso Estoque::getpeso(int entrada) {//-
+    ProdutoPorPeso produto = produtosPeso[0];
+    for(int i = 0; i < produtosPeso.size(); i++){
+        if(entrada == produtosPeso[i].getCodigo()){
+            produto = produtosPeso[i];
+        };
+    };
+    return produto;
 }
-ProdutoPorUnidade Estoque::getunidade(int entrada) {
-    return produtosUnidade[entrada];
+ProdutoPorUnidade Estoque::getunidade(int entrada) {//-
+    ProdutoPorUnidade produto = produtosUnidade[0];
+    for(int i = 0; i < produtosUnidade.size(); i++){
+        if(entrada == produtosUnidade[i].getCodigo()){
+            produto = produtosUnidade[i];
+        };
+    };
+    return produto;
 }
 
+void Estoque::setValorPeso(int codigo, float peso){//*
+    for(int i = 0; i < produtosPeso.size(); i++){
+        if(codigo == produtosPeso[i].getCodigo()){
+            produtosPeso[i].setPeso(peso);
+        };
+    };
+}
+
+void Estoque::setValorUnidade(int codigo, int peso){//*
+for(int i = 0; i < produtosUnidade.size(); i ++){
+    if(codigo == produtosUnidade[i].getCodigo()){
+        produtosUnidade[i].setQuantidade(peso);
+    };
+};
+}

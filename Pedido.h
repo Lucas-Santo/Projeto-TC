@@ -10,15 +10,21 @@ private:
     float valorTotal;
 
 public:
-    void adicionarProdutounidade(int, Estoque);
-    void adicionarProdutopeso(int, Estoque);
+    void adicionarProdutounidade(ProdutoPorUnidade);
+    void adicionarProdutopeso(ProdutoPorPeso);
     void removerProdutounidade(int);
     void removerProdutopeso(int);
+    void imprimirProdutos();
     void setNome(std::string nome);
     void setCodigo(int codigo);
     std::string getNome();
     int getCodigo();
     float getValorTotal();
+    int getSize(int);//*
+    int getCodigoProdutoPeso(int);
+    int getCodigoProdutoUnidade(int);
+    int getUnidadePedido(int);
+    float getPesoPedido(int);
 };
 
 #endif
